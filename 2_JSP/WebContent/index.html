@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>JSP(Java Server Page)</title>
+</head>
+<body>
+	<!--2022.1.3(월) 10h25-->
+	<!--서버 다룰 수 있는 언어 = iis?, PHP(프로그래밍 간단한 반복문 및 조건문 알면, 매우 쉬움; 호주 등에서 수요 높음 vs 우리나라에서는 유지/보수; 신규 개발은 별로 안 함)
+		JSP = html 안에 Java 쓰는 것; 일종의 도구; 어려움-->
+	<h1>JSP(Java Server Page)</h1>
+	<p>
+		JSP란, html 형식 내에서 Java 코드를 쓸 수 있는 "Java 언어"<br>
+		Servlet(Java 코드 내)에서 응답 화면을 구현했던 복잡함을 보다 간단하게 해결 가능한 기술 -> 즉, JSP의 가장 큰 장점은, Servlet에서는 business logic 처리에만 집중 + presentation logic 처리(응답 화면을 만들어내는 view 역할)는 JSP에서 집중할 수 있게끔 분리
+	</p>
+	
+	<hr>
+	<h2>JSP 표현법</h2>
+	<h3>1. JSP scripting 원소(element)</h3>
+	<p>JSP 페이지에서 Java 코드를 기술할 수 있게 해주는 기능</p>
+	
+	<ol>
+		<li>
+			선언문: &lt;%! %&gt; <br> <!--현재 html 문서에서 <, > 이 기호 그냥 쓰면(태그로써(x) li 태그 내에서 보여주기 위해(o)) html 태그로 인식될 가능성이 있는 바, 꺾쇠를 표기할 수 있는 특수문자로 기재함-->
+			<!--Java에서 선언 = 저장공간/자원 확보/할당; 이 식별자로 이런 것을 쓰겠다고 컴퓨터/컴파일러에게 알려주는 것-->
+			멤버변수나 메소드를 선언하기 위해 사용
+		</li>
+		<li>
+			scriptlet(스크립틀릿): &lt;% %&gt; <br>
+			JSP에서 Java 코드를 기술하기 위한 제일 기본적인 표현법-
+		</li>
+		<li>
+			표현식/출력식: &lt;%= %&gt; <br>
+			Java에서 작성한 값(변수 또는 메소드 호출)을 출력하기 위해 사용
+		</li>
+	</ol>
+
+	<a href="views/01_ScriptingElement.jsp">View Detail &raquo;</a> <!--http://localhost:8888/2_JSP/views/01_ScriptingElement.jsp 페이지로 이동; &raquo; = »-->
+	<!--server 마우스 오른쪽 클릭 -> add and remove -> '2_JSP' dynamic web project 추가 -> server 시작 -> server "started, synchronized" -> 웹브라우저에서 localhost:8888/2_JSP(context root) 요청 보냄-->
+	
+	<h3>2. 지시어/지시자(directive)</h3>
+	<p>
+		JSP page 전체에 영향을 미치는 정보를 기술할 때 쓰임<br><br> <!--페이지에 대한 설정-->
+		
+		표현법:<br>
+		&lt;%@ page/include/taglib 속성="속성 값" ... %&gt;		
+	</p>
+	
+	<ol>
+		<li>
+			page 지시어: 현재 JSP 페이지를 처리하는 데에 필요한 각종 속성들을 기술하는 부분<br>
+				<ul>
+					<li>language: 사용할 언어 유형 지정</li>
+					<li>contentType: 웹브라우저가 받아볼 페이지의 형식 및 (나의 질문 = 무엇의?)encoding 방식 지정 e.g. utf-8로 encoding하겠다</li>
+					<li>pageEncoding: JSP 파일에 기록된 Java 코드의 encoding 방식 지정 e.g. Java도 utf-8로 encoding 되어있음</li>
+					<li>import: Java의 import 구문과 같은 의미</li>
+					<li>errorPage: 해당 JSP 상에서 오류가 발생했을 경우 보여줄 에러페이지의 경로 지정</li>
+				</ul>
+				<a href="views/02_DirectivePage.jsp">View Detail &raquo;</a>
+		</li>
+		<li>
+			taglib 지시어: JSP 기능을 좀 더 확장할 수 있는 인자로, 추가적인 라이브러리를 등록하는 구문 <br>
+			<!--semi-project 끝나고 자세히 배울 것임-->
+		</li>
+		<li>
+			☆☆아주아주 중요/계속 사용할 것임☆☆ include 지시어: JSP 파일에 또다른 JSP 파일을 포함시키고자 할 때 사용하는 지시어 <br>
+			<!--e.g. html 문서의 header, footer 등 페이지가 바뀌어도 계속 따라와 표시되는 부분들-->
+				<a href="views/03_DirectiveInclude.jsp">View Detail &raquo;</a>
+		</li>
+	</ol>
+	
+	<hr>
+	<!--2022.1.3(월) 15h10-->
+	<h2>pizza 주문 페이지 = 주문 요청 -> 주문 요청을 받아서 처리해주는 Servlet -> 응답 JSP = pizza 결제 페이지</h2>
+	<a href="views/04_PizzaOrderForm.jsp">pizza 주문하러 가기 &raquo;</a>
+
+</body>
+</html>
